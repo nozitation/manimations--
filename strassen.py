@@ -15,6 +15,7 @@ class strassen(Scene):
             MathTex(r"(A_3 - A_1) \times (B_1 + B_2) = M_6", font_size=45),
             MathTex(r"(A_2 - A_4) \times (B_1 + B_2) = M_7", font_size=45)
         ).next_to(matrices, DOWN*2).shift(LEFT*2)
+        M[0][33:35].set_color(PURPLE)
         C = VGroup(
             MathTex(r"M_1 + M_4 - M_5 + M_7 = C_1", font_size=45), 
             MathTex(r"            M_3 + M_5 = C_2", font_size=45), 
@@ -23,8 +24,7 @@ class strassen(Scene):
         )
         self.add(title)
         self.play(Write(matrices), run_time=3)
-        self.play(Write(M[0]), run_time=1)
-        self.play(Write(M[1].next_to(M[0], DOWN).shift(RIGHT*0.75)), Write(M[2].next_to(M[1], DOWN)), Write(M[3].next_to(M[2], DOWN)), Write(M[4].next_to(M[3], DOWN)), Write(M[5].next_to(M[4], DOWN).shift(LEFT*0.75)), Write(M[6].next_to(M[5], DOWN)))
+        self.play(Write(M[0], reverse=True), Write(M[1].next_to(M[0], DOWN).shift(RIGHT*0.75), reverse=True), Write(M[2].next_to(M[1], DOWN), reverse=True), Write(M[3].next_to(M[2], DOWN), reverse=True), Write(M[4].next_to(M[3], DOWN), reverse=True), Write(M[5].next_to(M[4], DOWN).shift(LEFT*0.75), reverse=True), Write(M[6].next_to(M[5], DOWN), reverse=True), runtime=8)
         Mbox = SurroundingRectangle(M, color=PURPLE)
         self.play(Create(Mbox))
         self.play(M.animate.shift(LEFT*2), Mbox.animate.shift(LEFT*2))
